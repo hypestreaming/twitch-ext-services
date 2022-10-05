@@ -76,8 +76,7 @@ export abstract class Function {
 	}
 
 	protected getHeader(headers: any, header: string): string {
-
-		for (let key in headers) {
+		for (const key in headers) {
 			if (key.toLowerCase() === header.toLowerCase()) {
 				return headers[key];
 			}
@@ -104,9 +103,9 @@ export abstract class Function {
 
 	protected getRemoteAddress(event: any): string {
 		if (event.requestContext) {
-                        if (event.requestContext.identity && event.requestContext.identity.sourceIp) {
-                                return event.requestContext.identity.sourceIp;
-                        }
+			if (event.requestContext.identity && event.requestContext.identity.sourceIp) {
+				return event.requestContext.identity.sourceIp;
+			}
 		}
 
 		return '0.0.0.0';
