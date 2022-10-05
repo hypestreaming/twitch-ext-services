@@ -1,0 +1,52 @@
+{
+	"name": "hype-server",
+	"version": "1.0.0",
+	"main": "dist/src/index.js",
+	"types": "dist/src/index.d.ts",
+	"files": [
+		"/dist"
+	],
+	"scripts": {
+		"lint": "tslint --project tsconfig.json --format stylish",
+		"test": "nyc mocha -r ts-node/register --timeout 15000 --require source-map-support/register"
+	},
+	"nyc": {
+		"all": true,
+		"include": [
+			"src/*.ts"
+		],
+		"extension": [
+			".ts"
+		],
+		"reporter": [
+			"lcov",
+			"text"
+		]
+	},
+	"dependencies": {
+		"aws-sdk": "^2.1048.0",
+		"deep-equal": "^1.1.0",
+		"jsonwebtoken": "^8.4.0",
+		"request": "^2.88.0",
+		"request-promise": "^4.2.5",
+		"rxjs": "^6.5.2"
+	},
+	"devDependencies": {
+		"@angular/compiler": "^8.1.0",
+		"@angular/core": "^8.1.0",
+		"@types/chai": "^4.1.7",
+		"@types/mocha": "^5.2.5",
+		"@types/node": "^10.17.28",
+		"@types/request": "^2.48.1",
+		"@types/request-promise": "^4.1.46",
+		"atob": "^2.1.2",
+		"chai": "^4.2.0",
+		"codelyzer": "^5.1.0",
+		"mocha": "^5.2.0",
+		"nyc": "^13.3.0",
+		"source-map-support": "^0.5.12",
+		"ts-node": "^7.0.1",
+		"tslint": "^5.18.0",
+		"typescript": "^3.2.2"
+	}
+}
