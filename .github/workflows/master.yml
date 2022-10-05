@@ -16,5 +16,5 @@ jobs:
       - run: npm install --save-dev
       - run: ./node_modules/.bin/tslint --project tsconfig.json
       - run: npm run test
-      - run: tsc
+      - run: ./node_modules/.bin/tsc
 
