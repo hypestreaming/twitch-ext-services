@@ -32,8 +32,6 @@
 		"rxjs": "^6.5.2"
 	},
 	"devDependencies": {
-		"@angular/compiler": "^8.1.0",
-		"@angular/core": "^8.1.0",
 		"@types/chai": "^4.1.7",
 		"@types/mocha": "^5.2.5",
 		"@types/node": "^10.17.28",

@@ -14,22 +14,7 @@ jobs:
         with:
           node-version: 16.x
       - run: npm install --save-dev
-
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - run: ./node_modules/.bin/tslint --project tsconfig.json
-
-  test:
-    needs: lint
-    runs-on: ubuntu-latest
-    steps:
       - run: npm run test
-
-  build:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
       - run: tsc
 
