@@ -12,7 +12,7 @@ export abstract class Function {
 	 * json for lambda.
 	 *
 	 */
-	public abstract async handle(event: Event): Promise<any>;
+	public abstract handle(event: Event): Promise<any>;
 
 	private logEvent(event: Event): void {
 		const short: any = {};
