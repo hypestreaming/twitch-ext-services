@@ -14,25 +14,33 @@ export abstract class Function {
 	 */
 	public abstract async handle(event: Event): Promise<any>;
 
+	private logEvent(event: Event): void {
+		const short: any = {};
+
+		const ip = event.requestContext.identity.sourceIp;
+
+		if (event.queryStringParameters) {
+			short.queryStringParameters = event.queryStringParameters;
+		}
+
+		if (event.body) {
+			short.body = event.body;
+		}
+
+		if (event.headers && event.headers.Authorization) {
+			short.authorization = event.headers.Authorization;
+		}
+
+		console.log("Handling request: " + ip + " " + event.httpMethod + " " + event.path + " " + JSON.stringify(short));
+	}
+
 	/**
 	 * Handle request from lambda gateway
 	 *
 	 */
 	public run(event: Event, context: any, callback: any): void {
 
-		/*
-		const event2: Event = {
-			httpMethod: event.httpMethod,
-			body: event.body,
-			queryStringParameters: event.queryStringParameters,
-			headers: event.headers,
-			requestContext: {
-				identity: {
-					sourceIp: event.requestContext.identity.sourceIp,
-				}
-			};
-		}
-		*/
+		this.logEvent(event);
 
 		this.handle(event).then((body: any) => {
 
@@ -66,7 +74,6 @@ export abstract class Function {
 	}
 
 	protected getBodyParameter(event: Event, key: string): any {
-
 		const body = JSON.parse(event.body);
 		if (!(key in body)) {
 			throw new Error("Missing parameter " + key);
@@ -86,7 +93,6 @@ export abstract class Function {
 	}
 
 	protected getAuthorizationToken(headers: any): string {
-
 		if (headers == null) {
 			return null;
 		}
@@ -112,7 +118,6 @@ export abstract class Function {
 	}
 
 	public getToken(event: Event): TwitchAuth {
-
 		const jwt = new Jwt(this.config.twitch.extensionSecret);
 
 		const token = this.getAuthorizationToken(event.headers);
